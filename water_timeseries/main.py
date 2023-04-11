@@ -40,7 +40,7 @@ def shp2wkt(shapefile):
 # The polygon of the dam is written in wkt format (CRS=WGS84)
 lake = 'Karaoun'
 wkt_file = '/DATA/OBS2CO/vrac/shape/'+lake+'/'+lake+'.wkt'
-
+wkt_file = 'eth_afar_lakes.wkt'
 
 if not os.path.isfile(wkt_file):
     shp2wkt(wkt_file.replace('wkt', 'shp'))
@@ -147,7 +147,7 @@ water_det = WaterDetector()
 workflow = LinearWorkflow(input_task, add_ndwi, cloud_det, add_nominal_water, add_valmask,
                                            add_coverage, remove_cloudy_scenes, water_det)
 
-time_interval = ['2015-01-01', '2018-08-31']
+time_interval = ['2018-08-01', '2018-08-31']
 result = workflow.execute({input_task: {'bbox': dam_bbox, 'time_interval': time_interval}, })
 
 patch = list(result.values())[-1]
